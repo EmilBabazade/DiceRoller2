@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rollButton: Button
     private lateinit var diceImage: ImageView
     private lateinit var diceImage2: ImageView
+    private lateinit var clearButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +21,13 @@ class MainActivity : AppCompatActivity() {
         rollButton = findViewById(R.id.roll_button)
         diceImage = findViewById(R.id.dice_image)
         diceImage2 = findViewById(R.id.dice_image2)
+        clearButton = findViewById(R.id.clear_button)
 
-        rollButton.setOnClickListener(::handleRollClick)
+        rollButton.setOnClickListener(::setRandomDiceImages)
+        clearButton.setOnClickListener(::resetImages)
     }
 
-    private fun handleRollClick(view: View) {
+    private fun setRandomDiceImages(view: View) {
         diceImage.setImageResource(getRandomDiceImage())
         diceImage2.setImageResource(getRandomDiceImage())
     }
@@ -36,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         4 -> R.drawable.dice_4
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
+    }
+
+    private fun resetImages(view: View) {
+        diceImage.setImageResource(R.drawable.empty_dice)
+        diceImage2.setImageResource(R.drawable.empty_dice)
     }
 
 }
